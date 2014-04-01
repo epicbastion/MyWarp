@@ -7,8 +7,10 @@ import java.util.logging.Logger;
 import me.taylorkelly.mywarp.commands.RootCommands;
 import me.taylorkelly.mywarp.data.WarpManager;
 import me.taylorkelly.mywarp.data.WarpSignManager;
-import me.taylorkelly.mywarp.dataconnections.ConnectionManager;
+import me.taylorkelly.mywarp.dataconnections.DataConnection;
 import me.taylorkelly.mywarp.dataconnections.DataConnectionException;
+import me.taylorkelly.mywarp.dataconnections.MySQLConnection;
+import me.taylorkelly.mywarp.dataconnections.SQLiteConnection;
 import me.taylorkelly.mywarp.economy.EconomyLink;
 import me.taylorkelly.mywarp.economy.VaultLink;
 import me.taylorkelly.mywarp.localization.LocalizationManager;
@@ -31,6 +33,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.FileUtil;
 import org.dynmap.DynmapCommonAPI;
 
+import com.google.common.util.concurrent.CheckedFuture;
+
 public class MyWarp extends JavaPlugin implements Reloadable {
 
     /**
@@ -39,15 +43,15 @@ public class MyWarp extends JavaPlugin implements Reloadable {
     private static MyWarp instance;
 
     /**
-     * The commands manager, which handles all commands together with arguments,
+     * The commands manager which handles all commands together with arguments,
      * flags etc.
      */
     private CommandsManager commandsManager;
 
     /**
-     * Manages the database connections
+     * The data-connection to the storage that is actively used at runtime
      */
-    private ConnectionManager connectionManager;
+    private DataConnection dataConnection;
 
     /**
      * The economy Link in use
@@ -75,7 +79,7 @@ public class MyWarp extends JavaPlugin implements Reloadable {
     private WarpManager warpManager;
 
     /**
-     * the permissions-manage that handles all permission-related tasks
+     * The permissions-manage that handles all permission-related tasks
      */
     private PermissionsManager permissionsManager;
 
@@ -130,15 +134,15 @@ public class MyWarp extends JavaPlugin implements Reloadable {
     }
 
     /**
-     * Gets MyWarp's {@link ConnectionManager}, this method should be used for
-     * all database access.
+     * Gets MyWarp's active {@link DataConnection} which provides access to the
+     * underling database that stores all active warps.
      * 
      * This method can return null.
      * 
      * @return the connection manager
      */
-    public ConnectionManager getConnectionManager() {
-        return connectionManager;
+    public DataConnection getDataConnection() {
+        return dataConnection;
     }
 
     /**
@@ -227,8 +231,8 @@ public class MyWarp extends JavaPlugin implements Reloadable {
     @Override
     public void onDisable() {
         // close all open database connections
-        if (getConnectionManager() != null) {
-            getConnectionManager().close();
+        if (getDataConnection() != null) {
+            getDataConnection().close();
         }
         // remove cached resource bundles
         if (localizationManager != null) {
@@ -268,15 +272,25 @@ public class MyWarp extends JavaPlugin implements Reloadable {
                         "Failed to copy " + oldDatabase.getName() + "to " + newDatabase.getName()
                                 + ", the old database will be ignored!");
             } else {
-                logger().info("Your old SQlite database has been copied to the new format.");
+                logger().info(
+                        "Your old SQlite database (" + oldDatabase.getName()
+                                + ") has been copied to the name scheme (" + newDatabase.getName() + ").");
             }
         }
 
         // initialize the database connection
         try {
-            connectionManager = new ConnectionManager(getWarpSettings().mysqlEnabled, true, true);
+            CheckedFuture<DataConnection, DataConnectionException> conn;
+            if (getWarpSettings().mysqlEnabled) {
+                conn = MySQLConnection.establish(true, true);
+            } else {
+                conn = SQLiteConnection.establish(true, true);
+            }
+            MyWarp.logger().info("Settingup Connection (sync): " + Thread.currentThread().getName());
+            // block the main-thread until done
+            dataConnection = conn.checkedGet();
         } catch (DataConnectionException e) {
-            logger().severe("Could not establish database connection. Disabling MyWarp.");
+            logger().severe("Could not establish database connection (" + e.getMessage() + "). Disabling MyWarp.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }

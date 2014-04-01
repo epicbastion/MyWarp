@@ -2,6 +2,8 @@ package me.taylorkelly.mywarp.dataconnections;
 
 import java.util.Map;
 
+import com.google.common.util.concurrent.ListenableFuture;
+
 import me.taylorkelly.mywarp.data.Warp;
 
 /**
@@ -16,35 +18,12 @@ public interface DataConnection {
     public void close();
 
     /**
-     * Checks the given database. Depending on the implementation this could be
-     * used to check if the database exists, if it contains all values etc.
-     * 
-     * @param createIfNotExist
-     *            whether the method should create the database if it does not
-     *            exist
-     * @throws DataConnectionException
-     *             if any circumstance prevents working with the database
-     */
-    public void checkDB(boolean createIfNotExist) throws DataConnectionException;
-
-    /**
-     * Executes updates to the database. Depending on the implementation this
-     * could be used to add missing values, change database-layouts etc.
-     * 
-     * @param updateIfNecessary
-     *            whether the method should update the database if necessary
-     * @throws DataConnectionException
-     *             if any circumstance prevents working with the database
-     */
-    public void updateDB(boolean updateIfNecessary) throws DataConnectionException;
-
-    /**
      * Loads all warps from the database and returns them as map. Each warp is
      * stored under their name.
      * 
      * @return a map with all warps
      */
-    public Map<String, Warp> getMap();
+    public ListenableFuture<Map<String, Warp>> getMap();
 
     /**
      * Adds the warp to the database
@@ -67,11 +46,8 @@ public interface DataConnection {
      * 
      * @param warp
      *            the warp
-     * @param publicAll
-     *            true if the warp should be publicized, false it should be
-     *            privatized
      */
-    public void publicizeWarp(Warp warp, boolean publicAll);
+    public void publicizeWarp(Warp warp);
 
     /**
      * Updates a warp's creator in the database

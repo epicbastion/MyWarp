@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 
 import me.taylorkelly.mywarp.MyWarp;
 import me.taylorkelly.mywarp.utils.MatchList;
@@ -28,8 +30,15 @@ public class WarpManager {
     private Map<String, Warp> warpMap;
 
     public WarpManager() {
-        warpMap = MyWarp.inst().getConnectionManager().getMap();
-        MyWarp.logger().info(getSize() + " warps loaded.");
+        //block the main thread until the warps are loaded
+        try {
+            warpMap = MyWarp.inst().getDataConnection().getMap().get();
+            MyWarp.logger().info(getSize() + " warps loaded.");
+        } catch (InterruptedException e) {
+            MyWarp.logger().log(Level.SEVERE, "Failed to load warps from database.", e);
+        } catch (ExecutionException e) {
+            MyWarp.logger().log(Level.SEVERE, "Failed to load warps from database.", e);
+        }
     }
 
     /**
@@ -42,7 +51,7 @@ public class WarpManager {
      */
     public void addWarp(String name, Warp warp) {
         warpMap.put(name, warp);
-        MyWarp.inst().getConnectionManager().addWarp(warp);
+        MyWarp.inst().getDataConnection().addWarp(warp);
     }
 
     /**
@@ -87,7 +96,7 @@ public class WarpManager {
      */
     public void deleteWarp(Warp warp) {
         warpMap.remove(warp.getName());
-        MyWarp.inst().getConnectionManager().deleteWarp(warp);
+        MyWarp.inst().getDataConnection().deleteWarp(warp);
 
         if (MyWarp.inst().getWarpSettings().dynmapEnabled) {
             MyWarp.inst().getMarkers().deleteWarp(warp);

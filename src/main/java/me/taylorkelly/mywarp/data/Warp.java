@@ -305,7 +305,7 @@ public class Warp implements Comparable<Warp> {
      */
     public void invite(String player) {
         permissions.add(player);
-        MyWarp.inst().getConnectionManager().updatePermissions(this);
+        MyWarp.inst().getDataConnection().updatePermissions(this);
     }
 
     /**
@@ -316,7 +316,7 @@ public class Warp implements Comparable<Warp> {
      */
     public void inviteGroup(String group) {
         groupPermissions.add(group);
-        MyWarp.inst().getConnectionManager().updateGroupPermissions(this);
+        MyWarp.inst().getDataConnection().updateGroupPermissions(this);
     }
 
     /**
@@ -470,7 +470,7 @@ public class Warp implements Comparable<Warp> {
     public void setCreator(String giveeName) {
         this.creator = giveeName;
 
-        MyWarp.inst().getConnectionManager().updateCreator(this);
+        MyWarp.inst().getDataConnection().updateCreator(this);
         if (MyWarp.inst().getWarpSettings().dynmapEnabled) {
             MyWarp.inst().getMarkers().updateWarp(this);
         }
@@ -490,7 +490,7 @@ public class Warp implements Comparable<Warp> {
         this.yaw = Math.round(location.getYaw()) % 360;
         this.pitch = Math.round(location.getPitch()) % 360;
 
-        MyWarp.inst().getConnectionManager().updateLocation(this);
+        MyWarp.inst().getDataConnection().updateLocation(this);
 
         if (MyWarp.inst().getWarpSettings().dynmapEnabled) {
             MyWarp.inst().getMarkers().updateWarp(this);
@@ -506,7 +506,7 @@ public class Warp implements Comparable<Warp> {
     public void setPublicAll(boolean publicAll) {
         this.publicAll = publicAll;
 
-        MyWarp.inst().getConnectionManager().publicizeWarp(this, publicAll);
+        MyWarp.inst().getDataConnection().publicizeWarp(this);
 
         if (MyWarp.inst().getWarpSettings().dynmapEnabled) {
             if (publicAll) {
@@ -525,7 +525,7 @@ public class Warp implements Comparable<Warp> {
      */
     public void setWelcomeMessage(String welcomeMessage) {
         this.welcomeMessage = welcomeMessage;
-        MyWarp.inst().getConnectionManager().updateWelcomeMessage(this);
+        MyWarp.inst().getDataConnection().updateWelcomeMessage(this);
     }
 
     @Override
@@ -541,7 +541,7 @@ public class Warp implements Comparable<Warp> {
      */
     public void uninvite(String inviteeName) {
         permissions.remove(inviteeName);
-        MyWarp.inst().getConnectionManager().updatePermissions(this);
+        MyWarp.inst().getDataConnection().updatePermissions(this);
     }
 
     /**
@@ -552,7 +552,7 @@ public class Warp implements Comparable<Warp> {
      */
     public void uninviteGroup(String group) {
         groupPermissions.remove(group);
-        MyWarp.inst().getConnectionManager().updateGroupPermissions(this);
+        MyWarp.inst().getDataConnection().updateGroupPermissions(this);
     }
 
     /**
@@ -560,7 +560,7 @@ public class Warp implements Comparable<Warp> {
      */
     private void visit() {
         visits++;
-        MyWarp.inst().getConnectionManager().updateVisits(this);
+        MyWarp.inst().getDataConnection().updateVisits(this);
     }
 
     /**
