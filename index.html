@@ -1,70 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>MyWarp by TheE</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
+  <title>MyWarp</title>
+  <meta name="description" content="A social and self managing warp system for the Minecraft multiplayer.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="https://thee.github.io/MyWarp//">
+  <link rel="alternate" type="application/rss+xml" title="MyWarp" href="https://thee.github.io/MyWarp//feed.xml" />
+
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!--<link rel="stylesheet" href="http://basehold.it/24">-->
+
+</head>
+
+
   <body>
+
     <div class="wrapper">
-      <header>
-        <h1><img src="mywarp_logo.png" alt="MyWarp"></h1>
-        <p>Social and dynamic warps for Minecraft</p>
 
-        <p class="view"><a href="https://github.com/TheE/MyWarp">View the Project on GitHub <small>TheE/MyWarp</small></a></p>
+      <header class="site-header">
+
+  <h1 class="site-title"> <a href="/"><img src="/img/mywarp-logo.png" alt="MyWarp"></a></h1>
+
+  <p>A social and self managing warp system for the Minecraft multiplayer.</p>
+  <ul class="site-links button-list">
+    <li><a href="">View on GitHub</a></li>
+    <li><a href="/issues">Issue Tracker</a></li>
+    <li><a href="/wiki">Documentation</a></li>
+  </ul>
+
+</header>
 
 
-        <ul>
-          <li><a href="https://github.com/TheE/MyWarp/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/TheE/MyWarp/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/TheE/MyWarp">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p>MyWarp creates a unique warp network on your server that lets players interact dynamically with each other by creating and sharing warps. It provides a wide range of highly customizable features so it can easily be configured to match exactly the needs of your server.</p>
+      <div class="page-content">
+        <p>MyWarp allows players to share locations with each other. A shared location (called ‚warp‘) can be visited by other players using a simple command. The creator remains in full control over his warp: he can remove it, change its location or invite players to and uninvite players from using the warp.</p>
 
-<h1>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
+<p>Using warps, players can interact with each other and create a highly dynamic and entirely self managed system.</p>
 
-<ul>
-<li>Create private and public warps,</li>
-<li>Invite and uninvite players or permission-groups to private warps,</li>
-<li>List and search warps a player can use,</li>
-<li>Use automatic popularity ranking and name-matching to find exactly the warp you are looking for,</li>
-<li>Use creation-limits to regulate how many warps of a type a user can make,</li>
-<li>Create warmups or cooldowns to regulate warp-usage,</li>
-<li>Regulate access to warps based on worlds,</li>
-<li>Create warp signs and connect them to buttons or levers,</li>
-<li>Charge users for using, creating, listing or any other warp-related task,</li>
-<li>Translate every message the plugin outputs, either so it fits your servers theme of even into a whole new language,</li>
-<li>Show warps on Dynmap using the built-in support,</li>
-<li>Open Source, available under the GNU General Public License v3. </li>
-</ul><h1>
-<a name="links" class="anchor" href="#links"><span class="octicon octicon-link"></span></a>Links</h1>
+<h2 id="features">Features</h2>
+<p>MyWarp is highly customisable. Most functions are optional and are disabled by default: enable what you need, disable what you do not.</p>
 
 <ul>
-<li><a href="http://dev.bukkit.org/bukkit-plugins/mywarp/">Project page on BukkitDev</a></li>
-<li><a href="https://github.com/TheE/MyWarp/wiki">End-user documentation</a></li>
-<li><a href="https://thee140.ci.cloudbees.com/job/MyWarp/">Continuous integration</a></li>
-<li><a href="https://github.com/TheE/MyWarp/issues">Issue tracker</a></li>
+  <li>Create public warps, usable by everybody or private ones, only usable by the creator and invited players.</li>
+  <li>Profit from intelligent matching mechanisms that complete warp names while typing based on warps matching the desired action.</li>
+  <li>Use signs with buttons or pressure plates to create unique physical ways to use a warp.</li>
+  <li>Limit the number of warps a user can create — per type and even per world.</li>
+  <li>Charge users for creating, managing and using warps with the economy integration.</li>
+  <li>Make users wait before or after being teleported with flexible timers.</li>
+  <li>Regulate access to certain warps based on the world the user is in.</li>
+  <li>Benefit from an entirely localisable source that properly handles users with different languages on the same server.</li>
 </ul>
 
-Special thanks to <a href="http://www.cloudbees.com/">CloudBees</a> for hosting our continuous integration server via their FOSS program.</br>
-<img src="http://www.cloudbees.com/sites/default/files/Button-Powered-by-CB.png" alt="CloudBees logo">
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/TheE">TheE</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+<p>And even more: MyWarp is open source and available under GPL3, adding your own feature is highly encouraged.</p>
+
+<h2 id="downloads">Downloads</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <th>
+        <img class="platform-logo" src="/img/bukkit-logo.png" alt="Bukkit" />
+      </th>
+      <td>
+        <p>
+          MyWarp is officially supported on Bukkit.
+        </p>
+        <ol class="button-list">
+          <li><a class="button button-primary" href="http://dev.bukkit.org/bukkit-plugins/worldedit/files/">Stable releases</a></li>
+          <li><a class="button" href="http://builds.enginehub.org/job/worldedit/?branch=master">Experimental builds</a></li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <img class="platform-logo" src="/img/sponge-logo.png" /> Sponge
+      </th>
+      <td>
+        <p>
+          MyWarp is officially supported on Sponge.
+        </p>
+        <ol class="button-list">
+          <li><a class="button button-primary" href="http://dev.bukkit.org/bukkit-plugins/worldedit/files/">Stable releases</a></li>
+          <li><a class="button" href="http://builds.enginehub.org/job/worldedit/?branch=master">Experimental builds</a></li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>The project was started as a Bukkit plugin in January 2011 by Taylor “tkelly” Kelly and later continued by Arthur “flames” Mayer. In early 2012, Andy “spathzilla” F. took over and was joined by „thee“ soon after.</p>
+
+<p>MyWarp uses several open source projects including Google Guava, Apache Commons Lang, JOOQ, FlyWay, Intake and SquirrelID. Our continuos integration server is hosted by Cloudbees under their FOSS program.</p>
+
+      </div>
+
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <section>
+      <h5>Links</h5>
+      <ul>
+        <li><a href="/javadoc/" title="Javadocs">View the Javadocs</a></li>
+        <li><a href="https://www.patreon.com/thee" title="Support me on Patreon">Support me via Patreon</a></li>
+      </ul>
+    </section>
+    <section>
+      <h5>Supporters</h5>
+      <img src="/img/cloudbees.png", alt="CloudBees">
+    </section>
+    <section>
+      <h5>Website</h5>
+      <p>Theme developped with <a href="http://neat.bourbon.io" title="Bourbon Neat">neat</a>, based on <a href="http://www.getskeleton.com/" title="Skeleton">Skeleton</a>. Hosted on Github Pages.</p>
+    </section>
+
+  </div>
+
+</footer>
+
 
   </body>
+
 </html>
