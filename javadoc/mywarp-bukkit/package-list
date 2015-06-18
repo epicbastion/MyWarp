@@ -7,6 +7,7 @@ me.taylorkelly.mywarp.bukkit.limits
 me.taylorkelly.mywarp.bukkit.markers
 me.taylorkelly.mywarp.bukkit.timer
 me.taylorkelly.mywarp.bukkit.util
+me.taylorkelly.mywarp.bukkit.util.jdbc
 me.taylorkelly.mywarp.bukkit.util.paginator
 me.taylorkelly.mywarp.bukkit.util.parametric
 me.taylorkelly.mywarp.bukkit.util.parametric.binding
