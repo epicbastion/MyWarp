@@ -1,11 +1,11 @@
 me.taylorkelly.mywarp
 me.taylorkelly.mywarp.economy
 me.taylorkelly.mywarp.limits
-me.taylorkelly.mywarp.safety
 me.taylorkelly.mywarp.storage
 me.taylorkelly.mywarp.storage.converter
 me.taylorkelly.mywarp.storage.generated
 me.taylorkelly.mywarp.storage.generated.tables
+me.taylorkelly.mywarp.teleport
 me.taylorkelly.mywarp.timer
 me.taylorkelly.mywarp.util
 me.taylorkelly.mywarp.util.i18n
