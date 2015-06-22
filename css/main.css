@@ -198,6 +198,7 @@ h2,
 h3,
 h4,
 h5,
+.platform-logo,
 h6 {
   font-family: "Raleway", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   font-size: 1rem;
@@ -235,11 +236,11 @@ h4 {
     h4 {
       font-size: 2rem; } }
 
-h5 {
+h5, .platform-logo {
   font-size: 1.2rem;
   letter-spacing: -.04rem; }
   @media screen and (min-width: 550px) {
-    h5 {
+    h5, .platform-logo {
       font-size: 1.6rem; } }
 
 h6 {
@@ -271,7 +272,11 @@ hr {
 img,
 picture {
   margin: 0;
-  max-width: 100%; }
+  max-width: 100%;
+  margin-bottom: 0.75rem; }
+
+.platform-logo {
+  margin: 0; }
 
 .wrapper {
   max-width: 960px;
