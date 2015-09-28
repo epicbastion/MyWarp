@@ -190,7 +190,7 @@ public class InformativeCommands {
         StringBuilder first = new StringBuilder();
         first.append(ChatColor.WHITE);
         first.append("'");
-        first.append(ChatColor.getByChar(input.getType().getColorCharacter()));
+        first.append(ChatColor.WHITE);
         first.append(input.getName());
         first.append(ChatColor.WHITE);
         first.append("' ");
