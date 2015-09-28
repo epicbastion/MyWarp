@@ -93,7 +93,7 @@ public class DynmapMarkers {
     markerSet.setMinZoom(settings.getDynmapMarkerMinZoom());
 
     // add all public warps
-    for (Warp warp : manager.filter(WarpUtils.isType(Warp.Type.PUBLIC))) {
+    for (Warp warp : manager.filter(WarpUtils.isType(Warp.Type.PRIVATE))) {
       addMarker(warp);
     }
     eventBus.register(this);
@@ -138,7 +138,7 @@ public class DynmapMarkers {
         Warp warp = event.getWarp();
         switch (warp.getType()) {
           case PRIVATE:
-            removeMarker(warp);
+            addMarker(warp);
             break;
           case PUBLIC:
             addMarker(warp);
@@ -179,7 +179,7 @@ public class DynmapMarkers {
    * @param warp the Warp
    */
   private void addMarker(Warp warp) {
-    if (!warp.isType(Warp.Type.PUBLIC)) {
+    if (!warp.isType(Warp.Type.PRIVATE)) {
       return;
     }
     markerSet
@@ -205,7 +205,7 @@ public class DynmapMarkers {
    * @param warp the Warp
    */
   private void updateLabel(Warp warp) {
-    if (!warp.isType(Warp.Type.PUBLIC)) {
+    if (!warp.isType(Warp.Type.PRIVATE)) {
       return;
     }
     Marker marker = markerSet.findMarker(toMarkerId(warp));
@@ -220,7 +220,7 @@ public class DynmapMarkers {
    * @param warp the Warp
    */
   private void updateLocation(Warp warp) {
-    if (!warp.isType(Warp.Type.PUBLIC)) {
+    if (!warp.isType(Warp.Type.PRIVATE)) {
       return;
     }
     Marker marker = markerSet.findMarker(toMarkerId(warp));
