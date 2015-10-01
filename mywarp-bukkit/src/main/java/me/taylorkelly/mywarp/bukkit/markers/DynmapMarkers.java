@@ -19,6 +19,7 @@
 
 package me.taylorkelly.mywarp.bukkit.markers;
 
+import com.google.common.base.Predicates;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
@@ -92,8 +93,8 @@ public class DynmapMarkers {
     markerSet.setLabelShow(settings.isDynmapMarkerShowLable());
     markerSet.setMinZoom(settings.getDynmapMarkerMinZoom());
 
-    // add all public warps
-    for (Warp warp : manager.filter(WarpUtils.isType(Warp.Type.PRIVATE))) {
+    // add ALL existing warps
+    for (Warp warp : manager.filter(Predicates.<Warp>alwaysTrue())) {
       addMarker(warp);
     }
     eventBus.register(this);
@@ -129,21 +130,11 @@ public class DynmapMarkers {
     switch (event.getType()) {
       case CREATOR:
       case VISITS:
+      case TYPE: //instead of removing/adding the warp when the type changes, we simply update the label
         updateLabel(event.getWarp());
         break;
       case LOCATION:
         updateLocation(event.getWarp());
-        break;
-      case TYPE:
-        Warp warp = event.getWarp();
-        switch (warp.getType()) {
-          case PRIVATE:
-            addMarker(warp);
-            break;
-          case PUBLIC:
-            addMarker(warp);
-            break;
-        }
         break;
       default:
         break;
@@ -179,9 +170,7 @@ public class DynmapMarkers {
    * @param warp the Warp
    */
   private void addMarker(Warp warp) {
-    if (!warp.isType(Warp.Type.PRIVATE)) {
-      return;
-    }
+    // add the label regardeless of the warp's type
     markerSet
         .createMarker(toMarkerId(warp), toLabelHtml(warp), true, warp.getWorld().getName(), warp.getPosition().getX(),
                       warp.getPosition().getY(), warp.getPosition().getZ(), markerIcon, false);
@@ -205,9 +194,7 @@ public class DynmapMarkers {
    * @param warp the Warp
    */
   private void updateLabel(Warp warp) {
-    if (!warp.isType(Warp.Type.PRIVATE)) {
-      return;
-    }
+    // update the label regardeless of the warp's type
     Marker marker = markerSet.findMarker(toMarkerId(warp));
     if (marker != null) {
       marker.setLabel(toLabelHtml(warp), true);
@@ -220,9 +207,7 @@ public class DynmapMarkers {
    * @param warp the Warp
    */
   private void updateLocation(Warp warp) {
-    if (!warp.isType(Warp.Type.PRIVATE)) {
-      return;
-    }
+    // update the label regardeless of the warp's type
     Marker marker = markerSet.findMarker(toMarkerId(warp));
     if (marker != null) {
       marker.setLocation(warp.getWorld().getName(), warp.getPosition().getX(), warp.getPosition().getY(),
