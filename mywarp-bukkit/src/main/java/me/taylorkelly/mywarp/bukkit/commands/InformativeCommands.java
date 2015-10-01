@@ -188,25 +188,27 @@ public class InformativeCommands {
       public String apply(Warp input) {
         // 'name' by player
         StringBuilder first = new StringBuilder();
-        first.append(ChatColor.WHITE);
-        first.append("'");
-        first.append(ChatColor.WHITE);
+        //first.append(ChatColor.WHITE);
+        //first.append("'");
+        first.append(ChatColor.GREEN);
         first.append(input.getName());
-        first.append(ChatColor.WHITE);
-        first.append("' ");
-        first.append(MESSAGES.getString("list.by"));
-        first.append(" ");
-        first.append(ChatColor.ITALIC);
+        //first.append(ChatColor.WHITE);
+        //first.append("' ");
+        //first.append(MESSAGES.getString("list.by"));
+        //first.append(" ");
+        //first.append(ChatColor.ITALIC);
 
-        if (actor instanceof LocalPlayer && input.isCreator((LocalPlayer) actor)) {
-          first.append(MESSAGES.getString("list.you"));
-        } else {
-          Profile creator = input.getCreator();
-          first.append(creator.getName().or(creator.getUniqueId().toString()));
-        }
+        //if (actor instanceof LocalPlayer && input.isCreator((LocalPlayer) actor)) {
+        //  first.append(MESSAGES.getString("list.you"));
+        //} else {
+        //  Profile creator = input.getCreator();
+        //  first.append(creator.getName().or(creator.getUniqueId().toString()));
+        //}
+
         // @(x, y, z)
         StringBuilder last = new StringBuilder();
         last.append(ChatColor.RESET);
+        last.append(input.getWorld().getName());
         last.append("@(");
         last.append(input.getPosition().getFloorX());
         last.append(", ");
